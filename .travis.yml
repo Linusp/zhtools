@@ -1,0 +1,14 @@
+language: python
+
+python:
+  - '3.6'
+
+install:
+  - 'make deps'
+
+script:
+  - 'make test'
+
+after_success:
+  - 'coveralls'
+  - 'make clean'

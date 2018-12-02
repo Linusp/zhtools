@@ -1,0 +1,9 @@
+# for testing
+flake8
+pytest-cov
+coverage
+coveralls
+
+# for developing
+regex==2019.6.5
+more-itertools==7.0.0
