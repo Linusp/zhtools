@@ -1,0 +1,9 @@
+[run]
+omit = zhtools/regex/consts.py
+
+[report]
+exclude_lines =
+              __repr__
+              pass
+              raise NotImplementedError
+              abstractmethod
