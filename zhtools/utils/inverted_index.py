@@ -203,7 +203,7 @@ class InvertedIndex():
         return text
 
     def add_document(self, document):
-        """将一个文档添加到索引中，同时会尝试将文档写入 storage 中"""
+        """将一个文档添加到索引中"""
         self.schema.validate(document)
 
         uuid = document[self.schema.uuid_field]
