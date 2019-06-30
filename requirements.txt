@@ -16,9 +16,12 @@ entrypoints==0.3          # via flake8
 flake8==3.7.7
 idna==2.8                 # via requests
 importlib-metadata==0.17  # via pluggy, pytest
+jieba==0.39
 mccabe==0.6.1             # via flake8
 more-itertools==7.0.0
+numpy==1.16.4             # via pkuseg
 packaging==19.0           # via pytest
+pkuseg==0.0.22
 pluggy==0.12.0            # via pytest
 py==1.8.0                 # via pytest
 pycodestyle==2.5.0        # via flake8
@@ -27,7 +30,7 @@ pyparsing==2.4.0          # via packaging
 pytest-cov==2.7.1
 pytest==4.6.2             # via pytest-cov
 regex==2019.6.5
-requests==2.22.0          # via coveralls
+requests==2.22.0
 six==1.12.0               # via packaging, pytest
 urllib3==1.25.3           # via requests
 wcwidth==0.1.7            # via pytest

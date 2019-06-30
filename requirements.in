@@ -7,3 +7,6 @@ coveralls
 # for developing
 regex==2019.6.5
 more-itertools==7.0.0
+jieba==0.39
+pkuseg==0.0.22
+requests==2.22.0
