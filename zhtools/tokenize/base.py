@@ -6,6 +6,9 @@ from typing.re import Pattern
 import regex
 from more_itertools import windowed
 
+from .token import Token
+from .utils import align_tokens
+
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -57,10 +60,11 @@ class Tokenizer(ABC):
         raise NotImplementedError
 
     def cut(self, text):
-        return self.tokenize(text)
+        for token in self.tokenize(text):
+            yield token.word
 
     def lcut(self, text):
-        return list(self.tokenize(text))
+        return list(self.cut(text))
 
     def __call__(self, text):
         return self.tokenize(text)
@@ -83,14 +87,25 @@ class NgramTokenizer(Tokenizer):
                 raise ValueError("invalid filter pattern: {}".format(filter_pattern))
 
     def tokenize(self, text):
-        tokens = []
         text = text if not self.lowercase else text.lower()
-        for chars in windowed(text, self.level, step=self.step, fillvalue=''):
+        for idx, chars in enumerate(windowed(text, self.level, step=self.step, fillvalue='')):
             term = ''.join(chars)
             if self.filter_pattern and self.filter_pattern.match(term):
                 LOGGER.debug("term is dropped by filter pattern: %s", term)
                 continue
 
-            tokens.append(term)
+            start = idx * self.step
+            end = min(start + self.level, len(text))
+            yield Token(term, start, end)
 
-        return tokens
+
+@register_tokenizer('space')
+class SpaceTokenizer(Tokenizer):
+
+    def __init__(self):
+        pass
+
+    def tokenize(self, text):
+        words = text.split()
+        for word, span in zip(words, align_tokens(words, text)):
+            yield Token(word, span[0], span[1])
