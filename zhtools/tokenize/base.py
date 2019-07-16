@@ -11,7 +11,6 @@ from .utils import align_tokens
 
 
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.INFO)
 _TOKENIZER_CLS_MAP = {}
 
 

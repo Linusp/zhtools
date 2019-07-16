@@ -11,7 +11,6 @@ from zhtools.similarity import compute_similarity
 
 
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.INFO)
 
 
 class FieldNotExistsError(KeyError):
